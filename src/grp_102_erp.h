@@ -9,6 +9,7 @@
 const int MAX_STUDENTS = 100;
 const int MAX_COURSES = 50;
 const int MAX_REGS = 40;
+const int MAX_CREDITS = 24;
 
 enum ErrorCode
 {
