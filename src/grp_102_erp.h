@@ -1,3 +1,4 @@
+
 // group-102
 
 #ifndef GRP_102_ERP_H
@@ -30,7 +31,8 @@ enum ErrorCode
     E_PREREQ,
     E_CREDIT_LIMIT,
     E_THESIS_NOT_ALLOWED,
-    E_NO_GPA
+    E_NO_GPA,
+    E_FILE
 };
 
 enum CourseType
@@ -142,6 +144,9 @@ public:
 
     int findRegistration(int courseIndex, int semester) const;
 
+    // Swap student data and registration ownership safely.
+    void swap(Student& other);
+
     Student(const Student&) = delete;
     Student& operator=(const Student&) = delete;
 };
@@ -157,6 +162,9 @@ private:
 
     ProgramConfig program;
     bool programDefined;
+
+    // Tracks whether a non-comment command has been encountered.
+    bool commandSeen;
 
     int findCourse(const std::string& code) const;
     int findStudent(const std::string& roll) const;
@@ -205,6 +213,10 @@ public:
 
     int gradePoints(const std::string& symbol) const;
     const char* errorName(ErrorCode error) const;
+
+    // SAVE and LOAD bonus functionality.
+    ErrorCode saveToFile(const std::string& filename) const;
+    ErrorCode loadFromFile(const std::string& filename);
 };
 
 #endif

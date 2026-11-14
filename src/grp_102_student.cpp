@@ -1,3 +1,4 @@
+
 // group-102
 
 #include "grp_102_erp.h"
@@ -23,16 +24,12 @@ Student::~Student()
 ErrorCode Student::initializeRegistrations()
 {
     if (regs != 0)
-    {
         return OK;
-    }
 
     regs = new Registration[MAX_REGS];
 
     if (regs == 0)
-    {
         return E_FULL;
-    }
 
     numRegs = 0;
     return OK;
@@ -62,14 +59,10 @@ const std::string& Student::getName() const
 ErrorCode Student::addRegistration(int courseIndex, int semester)
 {
     if (regs == 0)
-    {
         return E_FULL;
-    }
 
     if (numRegs >= MAX_REGS)
-    {
         return E_FULL;
-    }
 
     regs[numRegs].initialize(courseIndex, semester);
     numRegs++;
@@ -87,9 +80,7 @@ int Student::getRegistrationCount() const
 Registration* Student::getRegistration(int index)
 {
     if (index < 0 || index >= numRegs)
-    {
         return 0;
-    }
 
     return &regs[index];
 }
@@ -98,9 +89,7 @@ Registration* Student::getRegistration(int index)
 const Registration* Student::getRegistration(int index) const
 {
     if (index < 0 || index >= numRegs)
-    {
         return 0;
-    }
 
     return &regs[index];
 }
@@ -118,4 +107,19 @@ int Student::findRegistration(int courseIndex, int semester) const
     }
 
     return -1;
+}
+
+// Swap complete student data and registration ownership
+void Student::swap(Student& other)
+{
+    roll.swap(other.roll);
+    name.swap(other.name);
+
+    Registration* tempRegs = regs;
+    regs = other.regs;
+    other.regs = tempRegs;
+
+    int tempCount = numRegs;
+    numRegs = other.numRegs;
+    other.numRegs = tempCount;
 }
