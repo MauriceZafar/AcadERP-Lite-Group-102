@@ -91,19 +91,19 @@ grp_102_main.cpp	Contains the main input loop and reports command errors.
 4.1 Classes and Data Organisation
 The system is divided into four main classes:
 
-##Course
+Course
 
 Stores the course code, course type, credit value, category and prerequisite. The prerequisite is stored as an index into the course array. A value of -1 represents a course without a prerequisite.
 
-##Student
+Student
 
 Stores the student's roll number and name. Each student also maintains an array of registrations, which is allocated dynamically when required.
 
-##Registration
+Registration
 
 Stores the course index, semester number, grade and thesis state for a particular registration. It also helps distinguish between an ungraded registration and one that has already received a grade.
 
-##ERP
+ERP
 
 Acts as the main management class. It maintains the student and course records and provides the operations required for registration, grade submission, eligibility checking and academic calculations.
 
